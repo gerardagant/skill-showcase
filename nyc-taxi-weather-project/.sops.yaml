@@ -1,0 +1,12 @@
+creation_rules:
+  # Encrypt any file matching secrets*.yaml with your GPG key
+  - path_regex: secrets.*\.yaml$
+    pgp: 'D0C1227BD706E6BB8AF62768C353B76F81EDB652'
+
+  # Encrypt terraform variable files
+  - path_regex: terraform/encrypted.*\.tfvars\.enc$
+    pgp: 'D0C1227BD706E6BB8AF62768C353B76F81EDB652'
+
+  # Encrypt any .env files added to the repo
+  - path_regex: \.env\.enc$
+    pgp: 'D0C1227BD706E6BB8AF62768C353B76F81EDB652'

@@ -1,0 +1,32 @@
+terraform {
+  required_providers {
+    databricks = {
+      source = "databricks/databricks"
+    }
+  }
+}
+
+resource "databricks_token" "main" {
+  comment          = "Terraform-managed token for automation"
+  lifetime_seconds = 31536000  # 1 year — rotate via terraform apply
+}
+
+resource "azurerm_key_vault_secret" "databricks_token" {
+  name         = "databricks-token"
+  value        = databricks_token.main.token_value
+  key_vault_id = var.key_vault_id
+
+  tags = { managed_by = "terraform" }
+}
+
+data "azuread_service_principal" "databricks" {
+  display_name = "AzureDatabricks"
+}
+
+resource "azurerm_key_vault_access_policy" "databricks" {
+  key_vault_id = var.key_vault_id
+  tenant_id    = var.tenant_id
+  object_id    = data.azuread_service_principal.databricks.object_id
+
+  secret_permissions = ["Get", "List"]
+}
