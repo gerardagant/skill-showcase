@@ -19,5 +19,5 @@ variable "databricks_workspace_name" {
 variable "databricks_sku" {
   description = "Databricks SKU: trial, standard, or premium"
   type        = string
-  default     = "trial"
+  default     = "premium"
 }
