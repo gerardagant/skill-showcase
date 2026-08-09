@@ -17,16 +17,16 @@ provider "registry.terraform.io/carlpett/sops" {
 }
 
 provider "registry.terraform.io/databricks/databricks" {
-  version     = "1.115.0"
-  constraints = "~> 1.0"
+  version     = "1.124.0"
+  constraints = "~> 1.40"
   hashes = [
-    "h1:AReAnQqEp825A3fRZTMeDPzjZP5lYCXv9FSjob8U7kM=",
-    "zh:39f57b587db32da8a414789f3b4636dda23b3bfbc7ca1e827032f2d8e5ba8814",
-    "zh:57549e5bba3e281bfa5dd41091db1f7ed1eec1f8a528e97c64a97c21479a5baf",
-    "zh:6401e75be47b98f1a807bbd17d5904f58d90c2b2ac0da483847efdecfa962c0f",
-    "zh:eb2d130871f6fb8cfd1b86be2f66cdf724ec08625e60d9d9947c36979b412547",
-    "zh:f0b62d241d15bfd4c3fcb8594f47d3f1b2575453112de3fd3d1c3ce5e01e9be5",
-    "zh:f73660eff28e16734dcb493cdd2021b7725592c80645e46aa6595f0e0176e543",
+    "h1:JSSbDa2ecGQqLEIhPA27cAGxSS9uQxywVFEoZ71VjVU=",
+    "zh:192d3afc537aff08439e0c350e842ef386409bda105c08599e922c9834a79e58",
+    "zh:3906550da66adc334c8eca6a5c2a06590a2359fa0ca89e7db16c36fd3467ebab",
+    "zh:39d7b42a78f6615e1d5dcaaf864cca859fc39bc40c2af792a6a6f9545eee99b3",
+    "zh:947ee85262993412855ea0d0b7d4a11b06dc1e0e64e1f9bb51dcc93f43479919",
+    "zh:be88cd89f55c66d705f8b4d790a91fede46aadfeee8abc32314eacb0d0ab161d",
+    "zh:e332cf3fbe0f138c7c86f39c3b9942deaf6b97c6ba6455be437f7e071b1e73b7",
   ]
 }
 
