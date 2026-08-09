@@ -16,6 +16,10 @@ resource "azurerm_databricks_workspace" "this" {
     environment = "Development"
     owner       = "gerard-gant"
   }
+
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 module "key_vault" {

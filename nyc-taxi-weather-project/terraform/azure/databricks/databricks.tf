@@ -6,6 +6,24 @@ terraform {
   }
 }
 
+# resource "azurerm_databricks_workspace" "main" {
+#   name                = "dbw-nyc-taxi-analytics"
+#   resource_group_name = azurerm_resource_group.this.name
+#   location            = azurerm_resource_group.this.location
+#   sku                 = "premium"
+
+#   tags = {
+#     Application  = "nyc-taxi-analytics"
+#     managed_by   = "terraform"
+    
+#   }
+
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+
+# }
+
 resource "databricks_token" "main" {
   comment          = "Terraform-managed token for automation"
   lifetime_seconds = 31536000  # 1 year — rotate via terraform apply
