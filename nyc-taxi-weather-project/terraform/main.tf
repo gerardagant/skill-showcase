@@ -12,8 +12,8 @@ resource "azurerm_databricks_workspace" "this" {
   sku                 = var.databricks_sku
 
   tags = {
-    project     = "nyc-taxi-analytics"
-    environment = "dev"
+    Application     = "nyc-taxi-analytics"
+    environment = "Development"
     owner       = "gerard-gant"
   }
 }
