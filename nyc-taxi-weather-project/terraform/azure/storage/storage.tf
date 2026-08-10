@@ -9,7 +9,7 @@ resource "azurerm_storage_account" "datalake" {
   is_hns_enabled = true
 
   # Enforce HTTPS — never allow plain HTTP
-  enable_https_traffic_only = true
+  https_traffic_only_enabled = true
 
   # Minimum TLS version for all connections
   min_tls_version = "TLS1_2"
@@ -19,6 +19,11 @@ resource "azurerm_storage_account" "datalake" {
     managed_by = "terraform"
     layer      = "storage"
   }
+}
+
+resource "time_sleep" "wait_for_dfs_propagation" {
+  depends_on        = [azurerm_storage_account.datalake]
+  create_duration = "90s"
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "raw" {
