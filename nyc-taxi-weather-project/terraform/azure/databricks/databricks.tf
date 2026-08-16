@@ -48,3 +48,21 @@ resource "azurerm_key_vault_access_policy" "databricks" {
 
   secret_permissions = ["Get", "List"]
 }
+
+data "databricks_node_type" "smallest" {
+  local_disk = true
+}
+
+data "databricks_spark_version" "latest_lts" {
+  long_term_support = true
+}
+
+resource "databricks_cluster" "shared_autoscaling" {
+  cluser_name             = ""
+  spark_version           = data.databricks_spark_version.latest_lts.id
+  node_type_id            = data.databricks_node_type.smallest.id
+  autotermination_minutes = 15
+  is_single_node          = true
+  kind                    = "CLASSIC_PREVIEW"
+
+}

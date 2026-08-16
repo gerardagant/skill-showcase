@@ -47,3 +47,4 @@ module "databricks" {
   tenant_id    = module.key_vault.tenant_id
   secrets      = local.secrets
 }
+
