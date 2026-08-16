@@ -57,12 +57,13 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
-resource "databricks_cluster" "shared_autoscaling" {
-  cluser_name             = ""
+resource "databricks_cluster" "shared_single_node" {
+  cluster_name             = "nyc-taxi-analytics"
   spark_version           = data.databricks_spark_version.latest_lts.id
   node_type_id            = data.databricks_node_type.smallest.id
   autotermination_minutes = 15
   is_single_node          = true
   kind                    = "CLASSIC_PREVIEW"
+  data_security_mode      = "SINGLE_USER"
 
 }
