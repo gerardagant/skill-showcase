@@ -4,6 +4,8 @@ resource "azurerm_key_vault_secret" "sp_client_id" {
   key_vault_id = azurerm_key_vault.main.id
 
   tags = { managed_by = "terraform-sops" }
+
+  depends_on = [azurerm_key_vault_access_policy.deployer]
 }
 
 resource "azurerm_key_vault_secret" "sp_client_secret" {
@@ -12,6 +14,8 @@ resource "azurerm_key_vault_secret" "sp_client_secret" {
   key_vault_id = azurerm_key_vault.main.id
 
   tags = { managed_by = "terraform-sops" }
+
+  depends_on = [azurerm_key_vault_access_policy.deployer]
 }
 
 resource "azurerm_key_vault_secret" "storage_account_key" {
@@ -20,6 +24,8 @@ resource "azurerm_key_vault_secret" "storage_account_key" {
   key_vault_id = azurerm_key_vault.main.id
 
   tags = { managed_by = "terraform-sops" }
+
+  depends_on = [azurerm_key_vault_access_policy.deployer]
 }
 
 resource "azurerm_key_vault_secret" "openweathermap_api_key" {
@@ -28,4 +34,6 @@ resource "azurerm_key_vault_secret" "openweathermap_api_key" {
   key_vault_id = azurerm_key_vault.main.id
 
   tags = { managed_by = "terraform-sops" }
+
+  depends_on = [azurerm_key_vault_access_policy.deployer]
 }
