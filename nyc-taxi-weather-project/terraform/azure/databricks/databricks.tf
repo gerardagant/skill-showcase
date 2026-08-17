@@ -39,13 +39,38 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
+resource "databricks_cluster_policy" "cost_controlled" {
+  name = "nyc-taxi-cost-controlled"
+
+  definition = jsonencode({
+    "autotermination_minutes" : {
+      "type"    : "range",
+      "maxValue": 30,
+      "defaultValue": 15
+    },
+    "node_type_id" : {
+      "type"    : "allowlist",
+      "values"  : [data.databricks_node_type.smallest.id]
+    }
+  })
+}
+
+resource "databricks_permissions" "cluster_usage" {
+  cluster_id = databricks_cluster.shared_single_node.id
+
+  access_control {
+    group_name       = "users"
+    permission_level = "CAN_RESTART"
+  }
+}
+
 resource "databricks_cluster" "shared_single_node" {
-  cluster_name             = "nyc-taxi-analytics"
+  cluster_name            = "nyc-taxi-analytics"
   spark_version           = data.databricks_spark_version.latest_lts.id
   node_type_id            = data.databricks_node_type.smallest.id
+  policy_id               = databricks_cluster_policy.cost_controlled.id
   autotermination_minutes = 15
   is_single_node          = true
   kind                    = "CLASSIC_PREVIEW"
   data_security_mode      = "SINGLE_USER"
-
 }
